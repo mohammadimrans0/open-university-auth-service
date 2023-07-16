@@ -1,13 +1,27 @@
-import { ErrorRequestHandler } from 'express'
-import { IGenericErrorMessage } from '../../interfaces/error'
-import handleValidationError from '../../errors/handleValidationError'
-import ApiError from '../../errors/ApiError'
+/* eslint-disable no-console */
+/* eslint-disable no-undefined */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ErrorRequestHandler, Request, Response } from 'express'
 import config from '../../config'
-import { ZodError } from 'zod'
-import handleZodError from '../../errors/handleZodError'
-import handleCastError from '../../errors/handleCastError'
+import ApiError from '../../errors/ApiError'
+import handleValidationError from '../../errors/handleValidationError'
 
-const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
+import { ZodError } from 'zod'
+import handleCastError from '../../errors/handleCastError'
+import handleZodError from '../../errors/handleZodError'
+import { IGenericErrorMessage } from '../../interfaces/error'
+
+const globalErrorHandler: ErrorRequestHandler = (
+  error,
+  req: Request,
+  res: Response
+) => {
+  config.env === 'development'
+    ? console.error(`🐱‍🏍 globalErrorHandler ~~`, { error })
+    : console.error(`🐱‍🏍 globalErrorHandler ~~`, error)
+
   let statusCode = 500
   let message = 'Something went wrong !'
   let errorMessages: IGenericErrorMessage[] = []
@@ -54,7 +68,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
     success: false,
     message,
     errorMessages,
-    stack: config.env !== 'production' ? error?.stack : null,
+    stack: config.env !== 'production' ? error?.stack : undefined,
   })
 }
 
