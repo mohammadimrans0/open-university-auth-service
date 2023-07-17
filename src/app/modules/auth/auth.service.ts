@@ -2,13 +2,16 @@ import httpStatus from 'http-status'
 import ApiError from '../../../errors/ApiError'
 import { User } from '../user/user.model'
 import {
+  IChangePassword,
   ILoginUser,
   ILoginUserResponse,
   IRefreshTokenResponse,
 } from './auth.interface'
-import { Secret } from 'jsonwebtoken'
+import { JwtPayload, Secret } from 'jsonwebtoken'
 import config from '../../../config'
 import { jwtHelper } from '../../../helpers/jwtHelper'
+
+// login user
 
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload
@@ -45,6 +48,8 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
 
   return { accessToken, refreshToken, needPasswordChange }
 }
+
+// refresh token
 
 const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   const user = new User()
@@ -83,4 +88,38 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   return { accessToken: newAccessToken }
 }
 
-export const AuthService = { loginUser, refreshToken }
+// change password
+
+const changePassword = async (
+  userDetail: JwtPayload | null,
+  payload: IChangePassword
+): Promise<void> => {
+  const user = new User()
+
+  const { password, newPassword } = payload
+
+  const isUserExist = await User.findOne({ id: userDetail?.userId }).select(
+    '+password'
+  )
+
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist')
+  }
+
+  // checking old password
+  if (
+    isUserExist.password &&
+    !(await user.isPasswordMatched(password, isUserExist.password))
+  ) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Old Password is incorrect')
+  }
+
+  // data update
+  isUserExist.password = newPassword
+  isUserExist.needPasswordChange = false
+
+  // updating using save()
+  isUserExist.save()
+}
+
+export const AuthService = { loginUser, refreshToken, changePassword }
