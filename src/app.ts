@@ -18,7 +18,7 @@ app.use('/api/v1/', routes)
 
 // testing
 app.get('/', async (req: Request, res: Response) => {
-  res.send('working successfully')
+  res.send('Auth Service working successfully')
 })
 
 // global error handle

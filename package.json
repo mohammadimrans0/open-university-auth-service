@@ -45,6 +45,7 @@
     "http-status": "^1.6.2",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.2.2",
+    "redis": "^4.6.10",
     "winston": "^3.9.0",
     "zod": "^3.21.4"
   }

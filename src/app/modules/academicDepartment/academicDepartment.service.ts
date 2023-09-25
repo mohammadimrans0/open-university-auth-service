@@ -4,10 +4,12 @@ import { IGenericResponse } from '../../../interfaces/common'
 import { IPaginationOptions } from '../../../interfaces/pagination'
 import { academicDepartmentSearchableFields } from './academicDepartment.constant'
 import {
+  AcademicDepartmentCreateAndUpdateEvent,
   IAcademicDepartment,
   IAcademicDepartmentFilters,
 } from './academicDepartment.interface'
 import { AcademicDepartment } from './academicDepartment.model'
+import { AcademicFaculty } from '../academicFaculty/academicFaculty.model'
 
 const getAllDepartments = async (
   filters: IAcademicDepartmentFilters,
@@ -48,7 +50,7 @@ const getAllDepartments = async (
     andConditions.length > 0 ? { $and: andConditions } : {}
 
   const result = await AcademicDepartment.find(whereConditions)
-    .populate('academicFaculty')
+    .populate('academicDepartment')
     .sort(sortConditions)
     .skip(skip)
     .limit(limit)
@@ -69,7 +71,7 @@ const createDepartment = async (
   payload: IAcademicDepartment
 ): Promise<IAcademicDepartment | null> => {
   const result = (await AcademicDepartment.create(payload)).populate(
-    'academicFaculty'
+    'academicDepartment'
   )
   return result
 }
@@ -78,7 +80,7 @@ const getSingleDepartment = async (
   id: string
 ): Promise<IAcademicDepartment | null> => {
   const result = await AcademicDepartment.findById(id).populate(
-    'academicFaculty'
+    'academicDepartment'
   )
   return result
 }
@@ -93,7 +95,7 @@ const updateDepartment = async (
     {
       new: true,
     }
-  ).populate('academicFaculty')
+  ).populate('academicDepartment')
   return result
 }
 
@@ -104,10 +106,51 @@ const deleteDepartment = async (
   return result
 }
 
+const insertIntoDBFromEvent = async (
+  e: AcademicDepartmentCreateAndUpdateEvent
+): Promise<void> => {
+  const academicFaculty = await AcademicFaculty.findOne({
+    syncId: e.academicFacultyId,
+  })
+  const payload = {
+    title: e.title,
+    academicFaculty: academicFaculty?._id,
+    syncId: e.id,
+  }
+
+  await AcademicDepartment.create(payload)
+}
+
+const updateOneInDBFromEvent = async (
+  e: AcademicDepartmentCreateAndUpdateEvent
+): Promise<void> => {
+  const academicFaculty = await AcademicFaculty.findOne({
+    syncId: e.academicFacultyId,
+  })
+  const payload = {
+    title: e.title,
+    academicFaculty: academicFaculty?._id,
+  }
+
+  await AcademicDepartment.findOneAndUpdate(
+    { syncId: e.id },
+    {
+      $set: payload,
+    }
+  )
+}
+
+const deleteOneFromDBFromEvent = async (syncId: string): Promise<void> => {
+  await AcademicDepartment.findOneAndDelete({ syncId })
+}
+
 export const AcademicDepartmentService = {
-  getAllDepartments,
+  createDepartment,
   getSingleDepartment,
+  getAllDepartments,
   updateDepartment,
   deleteDepartment,
-  createDepartment,
+  insertIntoDBFromEvent,
+  updateOneInDBFromEvent,
+  deleteOneFromDBFromEvent,
 }

@@ -17,6 +17,8 @@ import { IFaculty } from '../faculty/faculty.interface'
 import { IAdmin } from '../admin/admin.interface'
 import { Faculty } from '../faculty/faculty.model'
 import { Admin } from '../admin/admin.model'
+import { RedisClient } from '../../../shared/redis'
+import { EVENT_FACULTY_CREATED, EVENT_STUDENT_CREATED } from './user.constant'
 
 // create student
 const createStudent = async (
@@ -110,7 +112,7 @@ const createFaculty = async (
     // set custom id into both  faculty & user
     user.id = id
     faculty.id = id
-    // Create faculty using sesssin
+    // Create faculty using Session
     const newFaculty = await Faculty.create([faculty], { session })
 
     if (!newFaculty.length) {
@@ -205,6 +207,18 @@ const createAdmin = async (
         },
       ],
     })
+  }
+
+  if (newUserAllData) {
+    await RedisClient.publish(
+      EVENT_STUDENT_CREATED,
+      JSON.stringify(newUserAllData.student)
+    )
+
+    await RedisClient.publish(
+      EVENT_FACULTY_CREATED,
+      JSON.stringify(newUserAllData.faculty)
+    )
   }
 
   return newUserAllData
