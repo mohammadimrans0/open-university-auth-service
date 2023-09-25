@@ -24,10 +24,20 @@ export type IAcademicSemester = {
   code: IAcademicSemesterCodes
   startMonth: IAcademicSemesterMonths
   endMonth: IAcademicSemesterMonths
+  syncId: string
 }
 
 export type AcademicSemesterModel = Model<IAcademicSemester>
 
 export type IAcademicSemesterFilters = {
   searchTerm: string
+}
+
+export type IAcademicSemesterCreateAndUpdateEvent = {
+  title: string
+  year: string
+  code: string
+  startMonth: string
+  endMonth: string
+  id: string
 }

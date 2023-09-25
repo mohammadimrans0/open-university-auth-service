@@ -15,3 +15,13 @@ export type IAcademicDepartmentFilters = {
   searchTerm?: string
   academicFaculty?: Types.ObjectId
 }
+
+export type AcademicDepartmentCreateAndUpdateEvent = {
+  id: string
+  title: string
+  academicFacultyId: string
+}
+
+export type AcademicDepartmentDeletedEvent = {
+  id: string
+}

@@ -1,6 +1,5 @@
 import express from 'express'
 import validateRequest from '../../middleware/validateRequest'
-// import { UserController } from './user.controller';
 
 import { ENUM_USER_ROLE } from '../../../enums/user'
 import auth from '../../middleware/auth'

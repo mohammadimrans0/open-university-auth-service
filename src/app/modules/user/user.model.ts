@@ -10,6 +10,7 @@ const UserSchema = new Schema<IUser, Record<string, never>, IUserMethods>(
     role: { type: String, required: true },
     password: { type: String, required: true, unique: true, select: 0 },
     needPasswordChange: { type: Boolean, default: true },
+    passwordChangedAt: { type: Date },
     student: { type: Schema.Types.ObjectId, ref: 'Student' },
     faculty: { type: Schema.Types.ObjectId, ref: 'Faculty' },
     admin: { type: Schema.Types.ObjectId, ref: 'Admin' },
@@ -45,7 +46,12 @@ UserSchema.pre('save', async function (next) {
     user.password,
     Number(config.bcrypt_salt_rounds)
   )
+
+  if (!user.needPasswordChange) {
+    user.passwordChangedAt = new Date()
+  }
+
   next()
-})
+}) // only for User.create() and user.save()
 
 export const User = model<IUser, UserModel>('User', UserSchema)

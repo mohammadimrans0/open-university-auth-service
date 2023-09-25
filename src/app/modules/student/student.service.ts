@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import httpStatus from 'http-status'
 import ApiError from '../../../errors/ApiError'
-import { studentSearchableFields } from './student.constant'
+import {
+  EVENT_STUDENT_UPDATED,
+  studentSearchableFields,
+} from './student.constant'
 import { IStudent, IStudentFilters } from './student.interface'
 import { Student } from './student.model'
 import { IPaginationOptions } from '../../../interfaces/pagination'
@@ -9,6 +12,7 @@ import { IGenericResponse } from '../../../interfaces/common'
 import { paginationHelpers } from '../../../helpers/paginationHelper'
 import mongoose, { SortOrder } from 'mongoose'
 import { User } from '../user/user.model'
+import { RedisClient } from '../../../shared/redis'
 
 // get all Student
 const getAllStudents = async (
@@ -119,6 +123,14 @@ const updateStudent = async (
     updatedStudentData,
     { new: true }
   )
+    .populate('academicSemester')
+    .populate('academicFaculty')
+    .populate('academicDepartment')
+
+  if (result) {
+    await RedisClient.publish(EVENT_STUDENT_UPDATED, JSON.stringify(result))
+  }
+
   return result
 }
 
