@@ -1,4 +1,4 @@
-import { Model } from 'mongoose'
+import { Model } from 'mongoose';
 
 export type IAcademicSemesterMonths =
   | 'January'
@@ -12,32 +12,32 @@ export type IAcademicSemesterMonths =
   | 'September'
   | 'October'
   | 'November'
-  | 'December'
+  | 'December';
 
-export type IAcademicSemesterTitles = 'Autumn' | 'Summer' | 'Fall'
+export type IAcademicSemesterTitles = 'Autumn' | 'Summer' | 'Fall';
 
-export type IAcademicSemesterCodes = '01' | '02' | '03'
+export type IAcademicSemesterCodes = '01' | '02' | '03';
 
 export type IAcademicSemester = {
-  title: IAcademicSemesterTitles
-  year: string
-  code: IAcademicSemesterCodes
-  startMonth: IAcademicSemesterMonths
-  endMonth: IAcademicSemesterMonths
+  title: IAcademicSemesterTitles;
+  year: number;
+  code: IAcademicSemesterCodes;
+  startMonth: IAcademicSemesterMonths;
+  endMonth: IAcademicSemesterMonths;
   syncId: string
-}
+};
 
-export type AcademicSemesterModel = Model<IAcademicSemester>
+export type AcademicSemesterModel = Model<IAcademicSemester>;
 
 export type IAcademicSemesterFilters = {
-  searchTerm: string
-}
+  searchTerm?: string;
+};
 
-export type IAcademicSemesterCreateAndUpdateEvent = {
-  title: string
-  year: string
-  code: string
-  startMonth: string
-  endMonth: string
+export type IAcademicSemesterCreatedEvent = {
+  title: string,
+  year: string,
+  code: string,
+  startMonth: string,
+  endMonth: string,
   id: string
 }

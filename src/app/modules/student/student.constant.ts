@@ -1,15 +1,14 @@
-export const gender = ['male', 'female']
-
-export const bloodGroup = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+export const gender = ['male', 'female'];
+export const bloodGroup = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
 export const studentSearchableFields = [
   'id',
   'email',
   'contactNo',
-  'name.firstName',
+  'name.fisrtName',
   'name.middleName',
   'name.lastName',
-]
+];
 
 export const studentFilterableFields = [
   'searchTerm',
@@ -18,6 +17,6 @@ export const studentFilterableFields = [
   'email',
   'contactNo',
   'emergencyContactNo',
-]
+];
 
 export const EVENT_STUDENT_UPDATED = 'student.updated'

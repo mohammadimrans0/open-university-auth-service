@@ -1,5 +1,5 @@
-import { z } from 'zod'
-import { bloodGroup, gender } from '../student/student.constant'
+import { z } from 'zod';
+import { bloodGroup, gender } from '../student/student.constant';
 
 const createStudentZodSchema = z.object({
   body: z.object({
@@ -87,7 +87,7 @@ const createStudentZodSchema = z.object({
       profileImage: z.string().optional(),
     }),
   }),
-})
+});
 
 const createFacultyZodSchema = z.object({
   body: z.object({
@@ -143,7 +143,7 @@ const createFacultyZodSchema = z.object({
       profileImage: z.string().optional(),
     }),
   }),
-})
+});
 
 const createAdminZodSchema = z.object({
   body: z.object({
@@ -201,14 +201,13 @@ const createAdminZodSchema = z.object({
       designation: z.string({
         required_error: 'Designation is required',
       }),
-
       profileImage: z.string().optional(),
     }),
   }),
-})
+});
 
 export const UserValidation = {
   createStudentZodSchema,
   createFacultyZodSchema,
   createAdminZodSchema,
-}
+};

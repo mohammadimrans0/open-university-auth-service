@@ -8,7 +8,7 @@ export const adminFilterableFields = [
   'emergencyContactNo',
   'managementDepartment',
   'designation',
-]
+];
 
 export const adminSearchableFields = [
   'email',
@@ -17,4 +17,4 @@ export const adminSearchableFields = [
   'name.firstName',
   'name.lastName',
   'name.middleName',
-]
+];

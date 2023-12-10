@@ -1,11 +1,11 @@
-import express from 'express'
-import { ENUM_USER_ROLE } from '../../../enums/user'
-import auth from '../../middleware/auth'
-import validateRequest from '../../middleware/validateRequest'
-import { ManagementDepartmentController } from './managementDepartment.controller'
-import { ManagementDepartmentValidation } from './managementDepartment.validation'
+import express from 'express';
+import { ENUM_USER_ROLE } from '../../../enums/user';
+import auth from '../../middlewares/auth';
+import validateRequest from '../../middlewares/validateRequest';
+import { ManagementDepartmentController } from './managementDepartment.controller';
+import { ManagementDepartmentValidation } from './managementDepartment.validation';
 
-const router = express.Router()
+const router = express.Router();
 
 router.post(
   '/create-department',
@@ -14,7 +14,7 @@ router.post(
   ),
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   ManagementDepartmentController.createDepartment
-)
+);
 
 router.get(
   '/:id',
@@ -25,7 +25,7 @@ router.get(
     ENUM_USER_ROLE.STUDENT
   ),
   ManagementDepartmentController.getSingleDepartment
-)
+);
 
 router.patch(
   '/:id',
@@ -34,13 +34,13 @@ router.patch(
   ),
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   ManagementDepartmentController.updateDepartment
-)
+);
 
 router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN),
   ManagementDepartmentController.deleteDepartment
-)
+);
 
 router.get(
   '/',
@@ -52,6 +52,6 @@ router.get(
     ENUM_USER_ROLE.STUDENT
   ),
   ManagementDepartmentController.getAllDepartments
-)
+);
 
-export const ManagementDepartmentRoutes = router
+export const ManagementDepartmentRoutes = router;

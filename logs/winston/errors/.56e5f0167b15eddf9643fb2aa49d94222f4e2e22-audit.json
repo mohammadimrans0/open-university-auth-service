@@ -1,35 +1,15 @@
 {
-  "keep": {
-    "days": true,
-    "amount": 14
-  },
-  "auditLog": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\.56e5f0167b15eddf9643fb2aa49d94222f4e2e22-audit.json",
-  "files": [
-    {
-      "date": 1688302810220,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\OUAS-2023-02-07-19-error.log",
-      "hash": "633ed0104d9cdcf6b7d2f908e6d443d3f1adc11d5dd44c71ccc7a7fb56fc19e3"
+    "keep": {
+        "days": true,
+        "amount": 14
     },
-    {
-      "date": 1688308416173,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\OUAS-2023-02-07-20-error.log",
-      "hash": "b7832d2027ab2a199cdcce67a0d32e5177450f1a7c75cd759c1391fde0b01fb1"
-    },
-    {
-      "date": 1688310003346,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\OUAS-2023-02-07-21-error.log",
-      "hash": "d9c6cb68ace2f2d2abb4c25da68f68d3c84b7ade8d593aa58271af0fa4ff5f7b"
-    },
-    {
-      "date": 1689161137061,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\OUAS-2023-12-07-17-error.log",
-      "hash": "19fc136d63b2f50d7d7fd350b1975e2c2a4e67dd1c556aeccf16c003241b616b"
-    },
-    {
-      "date": 1689164648209,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\OUAS-2023-12-07-18-error.log",
-      "hash": "e1fa1e0acef51bdefd2e1beec5a4c0909e0d2cef98040e0e56d9e0434ed408bc"
-    }
-  ],
-  "hashType": "sha256"
+    "auditLog": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\.56e5f0167b15eddf9643fb2aa49d94222f4e2e22-audit.json",
+    "files": [
+        {
+            "date": 1699543540601,
+            "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\errors\\OUAS-2023-09-11-21-error.log",
+            "hash": "47b0ff8ea23ed9a1404713afc8523361631679f756d5d6ec552523cb14c3c510"
+        }
+    ],
+    "hashType": "sha256"
 }

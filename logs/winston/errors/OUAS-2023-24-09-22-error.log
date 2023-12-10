@@ -1,4 +1,0 @@
-[OUAS] error: Invalid argument type Sun Sep 24 2023 22:26:32
-[OUAS] error: E11000 duplicate key error collection: open-university.admins index: email_1 dup key: { email: "imran@gmail.com" } Sun Sep 24 2023 22:28:15
-[OUAS] error: E11000 duplicate key error collection: open-university.admins index: email_1 dup key: { email: "imran@gmail.com" } Sun Sep 24 2023 22:42:36
-[OUAS] error: AcademicDepartment validation failed: academicFaculty: Path `academicFaculty` is required. Sun Sep 24 2023 22:46:4

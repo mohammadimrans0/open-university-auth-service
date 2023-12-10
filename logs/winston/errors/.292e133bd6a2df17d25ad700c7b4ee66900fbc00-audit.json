@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Projects\\open-university\\auth-service\\logs\\winston\\errors\\.292e133bd6a2df17d25ad700c7b4ee66900fbc00-audit.json",
+    "files": [
+        {
+            "date": 1699769672859,
+            "name": "C:\\Projects\\open-university\\auth-service\\logs\\winston\\errors\\OUAS-2023-12-11-12-error.log",
+            "hash": "cf841ec9c9f254e7a0ef53d27ddfab992b376107db141d3fb89dcb5df1a0ecfa"
+        },
+        {
+            "date": 1699773992583,
+            "name": "C:\\Projects\\open-university\\auth-service\\logs\\winston\\errors\\OUAS-2023-12-11-13-error.log",
+            "hash": "dba17e9afc1afb06d18f9497baaf4fc17a46d2993096aa209aa0325531639d8b"
+        },
+        {
+            "date": 1699776824670,
+            "name": "C:\\Projects\\open-university\\auth-service\\logs\\winston\\errors\\OUAS-2023-12-11-14-error.log",
+            "hash": "60f60e18a6a779b296ac4cc2a6747082e878b7b8fe58d3b823df92420c817ab1"
+        },
+        {
+            "date": 1699795171030,
+            "name": "C:\\Projects\\open-university\\auth-service\\logs\\winston\\errors\\OUAS-2023-12-11-19-error.log",
+            "hash": "54dc122c84c7bd8b842a9d48d567bd659eaba9c17ba71ff0b9c509dffdff237d"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,42 +1,45 @@
-import express, { Application, NextFunction, Request, Response } from 'express'
-import cors from 'cors'
-import globalErrorHandler from './app/middleware/globalErrorHandler'
-import routes from './app/routes'
-import httpStatus from 'http-status'
-import cookieParser from 'cookie-parser'
+import cors from 'cors';
+import express, { Application, NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
+import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import routes from './app/routes';
 
-const app: Application = express()
+import cookieParser from 'cookie-parser';
 
-app.use(cors())
-app.use(cookieParser())
+const app: Application = express();
 
-// parser
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(cors({ origin: 'http://localhost:3030', credentials: true }));
+app.use(cookieParser());
 
-app.use('/api/v1/', routes)
+//parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// testing
-app.get('/', async (req: Request, res: Response) => {
-  res.send('Auth Service working successfully')
-})
+// app.use('/api/v1/users/', UserRoutes);
+// app.use('/api/v1/academic-semesters', AcademicSemesterRoutes);
+app.use('/api/v1', routes);
 
-// global error handle
-app.use(globalErrorHandler)
+//Testing
+// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
+//   throw new Error('Testing Error logger')
+// })
 
-// handle not found
+//global error handler
+app.use(globalErrorHandler);
+
+//handle not found
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
-    message: 'Data NOt Found',
+    message: 'Not Found',
     errorMessages: [
       {
         path: req.originalUrl,
-        message: 'Invalid Api Request',
+        message: 'API Not Found',
       },
     ],
-  })
-  next()
-})
+  });
+  next();
+});
 
-export default app
+export default app;

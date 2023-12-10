@@ -1,0 +1,2 @@
+[OUAS] error: E11000 duplicate key error collection: open-university.users index: id_1 dup key: { id: "A-00002" } Sun Nov 26 2023 18:16:24
+[OUAS] error: E11000 duplicate key error collection: open-university.users index: id_1 dup key: { id: "A-00002" } Sun Nov 26 2023 18:21:26

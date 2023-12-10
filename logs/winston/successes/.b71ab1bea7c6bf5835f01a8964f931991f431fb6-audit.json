@@ -1,35 +1,15 @@
 {
-  "keep": {
-    "days": true,
-    "amount": 14
-  },
-  "auditLog": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\.b71ab1bea7c6bf5835f01a8964f931991f431fb6-audit.json",
-  "files": [
-    {
-      "date": 1688302810209,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUAS-2023-02-07-19-success.log",
-      "hash": "3daa24e63e3375b3d944a447860b40c56e170e554836e4b63b027fe43f23c20d"
+    "keep": {
+        "days": true,
+        "amount": 14
     },
-    {
-      "date": 1688308416167,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUAS-2023-02-07-20-success.log",
-      "hash": "072002419965b5f369bdcf7d42ccce304b4cc55f2d70a98c99bf21fe5ae74a37"
-    },
-    {
-      "date": 1688310003340,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUAS-2023-02-07-21-success.log",
-      "hash": "a91d06b469ce5e572f42476e12ee7e95ac71079e21750a71ccb80e8a3398b8cb"
-    },
-    {
-      "date": 1689161137048,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUAS-2023-12-07-17-success.log",
-      "hash": "4f26bda7cb063351c212d07ad9c57941a8e83b9e3b9d2896ad29ffa6306de06f"
-    },
-    {
-      "date": 1689164648204,
-      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUAS-2023-12-07-18-success.log",
-      "hash": "f0e41b861c94228c54d645fcfc3c4f1757729fac3a4f3ea13643c1ca66e91754"
-    }
-  ],
-  "hashType": "sha256"
+    "auditLog": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\.b71ab1bea7c6bf5835f01a8964f931991f431fb6-audit.json",
+    "files": [
+        {
+            "date": 1699543540560,
+            "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUAS-2023-09-11-21-success.log",
+            "hash": "9bad62a9392634ec184d572a59c3494cfeca53a7a5a9c879bf3e09d12764508c"
+        }
+    ],
+    "hashType": "sha256"
 }

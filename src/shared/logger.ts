@@ -1,20 +1,22 @@
-import { createLogger, format, transports } from 'winston'
-import DailyRotateFile from 'winston-daily-rotate-file'
-const { combine, timestamp, label, printf } = format
-import path from 'path'
+/* eslint-disable no-undef */
+import path from 'path';
+import { createLogger, format, transports } from 'winston';
+import DailyRotateFile from 'winston-daily-rotate-file';
+const { combine, timestamp, label, printf } = format;
 
-// custom log format
+//Customm Log Format
+
 const myFormat = printf(({ level, message, label, timestamp }) => {
-  const date = new Date(timestamp)
-  const hour = date.getHours()
-  const minutes = date.getMinutes()
-  const seconds = date.getSeconds()
-  return `[${label}] ${level}: ${message} ${date.toDateString()} ${hour}:${minutes}:${seconds}`
-})
+  const date = new Date(timestamp);
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  return `${date.toDateString()} ${hour}:${minutes}:${seconds} } [${label}] ${level}: ${message}`;
+});
 
-const infoLogger = createLogger({
+const logger = createLogger({
   level: 'info',
-  format: combine(label({ label: 'OUAS' }), timestamp(), myFormat),
+  format: combine(label({ label: 'PH' }), timestamp(), myFormat),
   transports: [
     new transports.Console(),
     new DailyRotateFile({
@@ -23,7 +25,7 @@ const infoLogger = createLogger({
         'logs',
         'winston',
         'successes',
-        'OUAS-%DATE%-success.log'
+        'phu-%DATE%-success.log'
       ),
       datePattern: 'YYYY-DD-MM-HH',
       zippedArchive: true,
@@ -31,11 +33,11 @@ const infoLogger = createLogger({
       maxFiles: '14d',
     }),
   ],
-})
+});
 
-const errorLogger = createLogger({
+const errorlogger = createLogger({
   level: 'error',
-  format: combine(label({ label: 'OUAS' }), timestamp(), myFormat),
+  format: combine(label({ label: 'PH' }), timestamp(), myFormat),
   transports: [
     new transports.Console(),
     new DailyRotateFile({
@@ -44,7 +46,7 @@ const errorLogger = createLogger({
         'logs',
         'winston',
         'errors',
-        'OUAS-%DATE%-error.log'
+        'phu-%DATE%-error.log'
       ),
       datePattern: 'YYYY-DD-MM-HH',
       zippedArchive: true,
@@ -52,6 +54,6 @@ const errorLogger = createLogger({
       maxFiles: '14d',
     }),
   ],
-})
+});
 
-export { infoLogger, errorLogger }
+export { logger, errorlogger };

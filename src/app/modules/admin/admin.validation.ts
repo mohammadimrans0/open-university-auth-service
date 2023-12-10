@@ -1,14 +1,12 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 const updateAdmin = z.object({
   body: z.object({
-    name: z
-      .object({
-        firstName: z.string().optional(),
-        lastName: z.string().optional(),
-        middleName: z.string().optional(),
-      })
-      .optional(),
+    name: z.object({
+      firstName: z.string().optional(),
+      lastName: z.string().optional(),
+      middleName: z.string().optional(),
+    }),
 
     dateOfBirth: z.string().optional(),
 
@@ -32,8 +30,8 @@ const updateAdmin = z.object({
 
     profileImage: z.string().optional(),
   }),
-})
+});
 
 export const AdminValidation = {
   updateAdmin,
-}
+};
