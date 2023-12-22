@@ -6,16 +6,6 @@
     "auditLog": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\.457c97cd34fdd27b6a423fb9a7572a5afc8833ed-audit.json",
     "files": [
         {
-            "date": 1701096446551,
-            "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-27-11-20-success.log",
-            "hash": "1809317f7a77dcaf01dc51a4998ea6d5eb92888b75dd0b4eb0b6db3c472d7136"
-        },
-        {
-            "date": 1701098113637,
-            "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-27-11-21-success.log",
-            "hash": "6bd0af0077aa43e22a94a1436d9762b6d39d24c3e38d4f6777183889c196fb1c"
-        },
-        {
             "date": 1701861107154,
             "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-06-12-17-success.log",
             "hash": "43a792bacfadc1919e64a4eb4996ef09d091fb0a95a3fa5e5a3e6efb24a9f155"
@@ -24,6 +14,26 @@
             "date": 1702223167557,
             "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-10-12-21-success.log",
             "hash": "7036f7b6eadd5eb2d199654b6c6d9c53901d7adcc130645cc8073053b3a4e618"
+        },
+        {
+            "date": 1702905253061,
+            "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-18-12-19-success.log",
+            "hash": "c22fbdb812683be6b9500a886c1b5aa06809bc0b4b4cbf935422507712b696e0"
+        },
+        {
+            "date": 1702995845220,
+            "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-19-12-20-success.log",
+            "hash": "9865bbc83043d8e0a4d418842aa212ba900d91b5b09b25d3054d86ad726d808f"
+        },
+        {
+            "date": 1703057905776,
+            "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-20-12-13-success.log",
+            "hash": "e8d18125f75537eeb7f091578952653a479a1da2f59c99511afd355999d138dc"
+        },
+        {
+            "date": 1703059841968,
+            "name": "C:\\Projects\\my-projects\\open-university\\auth-service\\logs\\winston\\successes\\phu-2023-20-12-14-success.log",
+            "hash": "caa775deba5fbe4b2d47f7c6c21c75d01103dc86f0523074b9fa1eb479fbda79"
         }
     ],
     "hashType": "sha256"

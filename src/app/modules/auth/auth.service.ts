@@ -19,10 +19,6 @@ import { sendEmail } from './sendResetMail';
 
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
-  // creating instance of User
-  // const user = new User();
-  //  // access to our instance methods
-  //   const isUserExist = await user.isUserExist(id);
 
   const isUserExist = await User.isUserExist(id);
 
@@ -61,7 +57,6 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
 
 const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   //verify token
-  // invalid token - synchronous
   let verifiedToken = null;
   try {
     verifiedToken = jwtHelpers.verifyToken(
@@ -74,7 +69,6 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
 
   const { userId } = verifiedToken;
 
-  // tumi delete hye gso  kintu tumar refresh token ase
   // checking deleted user's refresh token
 
   const isUserExist = await User.isUserExist(userId);
@@ -103,9 +97,6 @@ const changePassword = async (
 ): Promise<void> => {
   const { oldPassword, newPassword } = payload;
 
-  // // checking is user exist
-  // const isUserExist = await User.isUserExist(user?.userId);
-
   //alternative way
   const isUserExist = await User.findOne({ id: user?.userId }).select(
     '+password'
@@ -123,21 +114,6 @@ const changePassword = async (
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Old Password is incorrect');
   }
 
-  // // hash password before saving
-  // const newHashedPassword = await bcrypt.hash(
-  //   newPassword,
-  //   Number(config.bycrypt_salt_rounds)
-  // );
-
-  // const query = { id: user?.userId };
-  // const updatedData = {
-  //   password: newHashedPassword,  //
-  //   needsPasswordChange: false,
-  //   passwordChangedAt: new Date(), //
-  // };
-
-  // await User.findOneAndUpdate(query, updatedData);
-  // data update
   isUserExist.password = newPassword;
   isUserExist.needsPasswordChange = false;
 
@@ -154,6 +130,7 @@ const forgotPass = async (payload: { id: string }) => {
   }
 
   let profile = null;
+  
   if (user.role === ENUM_USER_ROLE.ADMIN) {
     profile = await Admin.findOne({ id: user.id })
   }
@@ -165,18 +142,17 @@ const forgotPass = async (payload: { id: string }) => {
   }
 
   if (!profile) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Pofile not found!")
+    throw new ApiError(httpStatus.BAD_REQUEST, "Profile not found!")
   }
 
   if (!profile.email) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Email not found!")
   }
 
-  const passResetToken = await jwtHelpers.createResetToken({ id: user.id }, config.jwt.secret as string, '50m')
+  const passResetToken = jwtHelpers.createResetToken({ id: user.id }, config.jwt.secret as string, '50m')
 
-  const resetLink: string = config.resetlink + `token=${passResetToken}`
+  const resetLink: string = config.resetLink + `id=${user.id}&token=${passResetToken}`
 
-  console.log("profile: ", profile)
   await sendEmail(profile.email, `
       <div>
         <p>Hi, ${profile.name.firstName}</p>
@@ -184,10 +160,6 @@ const forgotPass = async (payload: { id: string }) => {
         <p>Thank you</p>
       </div>
   `);
-
-  // return {
-  //   message: "Check your email!"
-  // }
 }
 
 const resetPassword = async (payload: { id: string, newPassword: string }, token: string) => {
@@ -199,9 +171,9 @@ const resetPassword = async (payload: { id: string, newPassword: string }, token
     throw new ApiError(httpStatus.BAD_REQUEST, "User not found!")
   }
 
-  const isVarified = await jwtHelpers.verifyToken(token, config.jwt.secret as string);
+  jwtHelpers.verifyToken(token, config.jwt.secret as string);
 
-  const password = await bcrypt.hash(newPassword, Number(config.bycrypt_salt_rounds))
+  const password = await bcrypt.hash(newPassword, Number(config.bcrypt_salt_rounds))
 
   await User.updateOne({ id }, { password });
 }
